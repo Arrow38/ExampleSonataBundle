@@ -31,3 +31,20 @@ public function preUpdate($object)
             $picture->setProduct($this);
         }
     }
+
+
+// Validate File upload type & size 
+    /**
+    * @param ErrorElement $context
+    */
+    public function validate(ErrorElement $errorElement, $object)
+    {
+        $errorElement
+        ->with('file')
+            ->assertNotNull(array())
+            ->assertNotBlank()
+            ->assertFile(array('maxSize' => '3000000', 'mimeTypes' => array('image/jpeg',
+            'image/png')))
+        ->end();
+     
+    }
